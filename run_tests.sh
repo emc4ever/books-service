@@ -23,7 +23,7 @@ then
   mongod &
   sbt run &
 #  cd /source/client
-   cd /var/jenkins/workspace/client
+   cd /var/jenkins/workspace/books-service/client
   Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
   gulp watch
 elif [ "$TEST_TYPE" = "all" ]
@@ -32,11 +32,11 @@ then
   sbt "testOnly *Spec"
   mongod --shutdown
 #  cd /source/client
-  cd /var/jenkins/workspace/client
+  cd /var/jenkins/workspace/books-service/client
   Xvfb :1 -screen 0 1024x768x16 &> xvfb.log  &
   gulp test:local
 #  cd /source
-  cd /var/jenkins/workspace/client
+  cd /var/jenkins/workspace/books-service/client
   sbt assembly
 else
   mongod &
