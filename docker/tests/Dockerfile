@@ -19,5 +19,5 @@ ENV DOMAIN "http://172.17.42.1"
 #WORKDIR /source
 #CMD ["/source/run_tests.sh"]
 VOLUME ["/var/jenkins/workspace","/root/.ivy2/cache"]
-WORKDIR /var/jenkins/workspace
+WORKDIR /var/jenkins/workspace/books-service
 CMD ["/var/jenkins/workspace/books-service/run_tests.sh"]
