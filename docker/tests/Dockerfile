@@ -15,6 +15,9 @@ RUN wget -q http://downloads.typesafe.com/scala/2.11.5/scala-2.11.5.deb && \
 RUN mkdir -p /data/db
 ENV TEST_TYPE "spec"
 ENV DOMAIN "http://172.17.42.1"
-VOLUME ["/source", "/root/.ivy2/cache"]
-WORKDIR /source
-CMD ["/source/run_tests.sh"]
+#VOLUME ["/source", "/root/.ivy2/cache"]
+#WORKDIR /source
+#CMD ["/source/run_tests.sh"]
+VOLUME ["/var/jenkins/workspace","/root/.ivy2/cache"]
+WORKDIR /var/jenkins/workspace
+CMD ["/var/jenkins/workspace/books-service/run_tests.sh"]
