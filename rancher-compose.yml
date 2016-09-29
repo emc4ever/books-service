@@ -1,0 +1,12 @@
+books-service:
+  scale: 1
+books-serviceLB:
+  scale: 3
+  load_balancer_config:
+    haproxy_config: {}
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
