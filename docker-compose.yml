@@ -1,40 +1,13 @@
-app:
-  image: vfarcic/books-service
-  ports:
-    - 8080
-  volumes:
-    - /data/db:/data/db
-
-tests:
-  image: vfarcic/books-service-tests
-  volumes:
-    - ./client/components:/source/client/components
-    - ./client/test:/source/client/test
-    - ./src:/source/src
-    - ./target/scala-2.10:/source/target/scala-2.10
-    - ./client/wct-complete.conf.js:/source/client/wct.conf.js
-    - /data/tests/db:/data/db
-  environment:
-    - TEST_TYPE=all
-
-integ:
-  image: vfarcic/books-service-tests
-  volumes:
-    - src:/source/src
-  environment:
-    - TEST_TYPE=integ
-
-feTestsWatch:
-  image: vfarcic/books-service-tests
-  stdin_open: true
-  tty: true
-  volumes:
-    - ./client/components:/source/client/components
-    - ./client/test:/source/client/test
-    - ./src:/source/src
-    - ./target:/source/target
-    - /data/tests/db:/data/db
-  ports:
-    - 8080:8080
-  environment:
-    - TEST_TYPE=watch-front
+books-service:
+ image: 10.62.39.153:5000/books-service
+ privileged: true
+ volumes:
+  - books-service-data:/data/db
+books-serviceLB:
+ ports:
+  - 9001:8080
+ tty: true
+ image: rancher/load-balancer-service
+ links:
+  - books-service:books-service
+ stdin_open: true
